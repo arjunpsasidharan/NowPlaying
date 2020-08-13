@@ -1,7 +1,8 @@
-package com.quastio.nowplaying
+package com.quastio.nowplaying.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.quastio.nowplaying.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

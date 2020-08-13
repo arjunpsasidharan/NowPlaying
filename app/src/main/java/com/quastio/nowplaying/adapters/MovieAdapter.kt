@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.model.Movie
-import com.quastio.nowplaying.restclients.Restclient
+import com.quastio.nowplaying.restclients.RestClient
 
 class MovieAdapter(private val interaction: Interaction? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -68,7 +68,7 @@ class MovieAdapter(private val interaction: Interaction? = null) :
             itemView.setOnClickListener {
                 interaction?.onItemSelected(adapterPosition, item)
             }
-            val url=Restclient.ORIGINAL_IMG_BASE_URL+item.posterPath
+            val url=RestClient.ORIGINAL_IMG_BASE_URL+item.posterPath
             Glide.with(itemView.context)
                 .load(url)
                 .into(imageView)

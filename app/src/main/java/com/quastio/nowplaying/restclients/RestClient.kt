@@ -9,7 +9,7 @@ import retrofit2.http.Query
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-object Restclient {
+object RestClient {
 
 
     private val defaultHttpClient: OkHttpClient by lazy {
@@ -38,7 +38,7 @@ object Restclient {
 
     interface MovieApiService{
         @GET(NOW_PLAYING)
-       suspend fun getMovies(@Query("api_key")key:String,@Query("page")page:Int):Date
+       suspend fun getMovies(@Query("api_key") key:String="52a9e88fc9d879e48bce96bfd7633921",@Query("page")page:Int):Date
 
     }
 

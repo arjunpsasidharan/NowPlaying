@@ -44,4 +44,6 @@ object Restclient {
 
     private const val BASE_URL="https://api.themoviedb.org/3/movie/"
     private const val NOW_PLAYING="now_playing"
+    const val ORIGINAL_IMG_BASE_URL="https://image.tmdb.org/t/p/original/"
+
 }

@@ -13,8 +13,9 @@ import java.lang.Exception
 class MovieDataSource: PagingSource<Int, Movie>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
-            // Start refresh at page 1 if undefined.
             val nextPage = params.key ?: 1
+            Log.e("data source","page  $nextPage")
+
             val response = RestClient.movieApiService.getMovies(page = nextPage)
 
             LoadResult.Page(
@@ -23,6 +24,7 @@ class MovieDataSource: PagingSource<Int, Movie>() {
                 nextKey = response.page + 1
             )
         } catch (e: Exception) {
+            e.printStackTrace()
             LoadResult.Error(e)
         }
 

@@ -53,7 +53,6 @@ class MovieAdapter(private val interaction: Interaction? = null) :
             itemView.setOnClickListener {
                 interaction?.onItemSelected(layoutPosition, item)
             }
-            Log.e("main","url ${item.posterPath} ")
             val url=RestClient.ORIGINAL_IMG_BASE_URL+item.posterPath
             Glide.with(itemView.context)
                 .load(url)

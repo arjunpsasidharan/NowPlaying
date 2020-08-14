@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.adapters.MovieAdapter
@@ -32,12 +33,11 @@ class MainActivity : AppCompatActivity(), MovieAdapter.Interaction {
         recycler_view.adapter=movieAdapter
 
         movieViewModel=ViewModelProvider(this).get(MovieViewModel::class.java)
-        CoroutineScope(IO).launch {
+        lifecycleScope.launch {
             movieViewModel._movie_data.collect{
                 if (this@MainActivity::movieAdapter.isInitialized){
-                    withContext(Main){
                         movieAdapter.submitData(it)
-                    }
+
                 }
             }
 

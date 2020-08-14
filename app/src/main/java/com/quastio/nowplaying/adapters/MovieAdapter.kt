@@ -1,11 +1,13 @@
 package com.quastio.nowplaying.adapters
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.paging.PagedListAdapter
+import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.model.Movie
@@ -13,7 +15,7 @@ import com.quastio.nowplaying.restclients.RestClient
 import com.quastio.nowplaying.utils.MovieDiffUtil
 
 class MovieAdapter(private val interaction: Interaction? = null) :
-    PagedListAdapter<Movie,RecyclerView.ViewHolder>(MovieDiffUtil.DIFF_CALLBACK) {
+    PagingDataAdapter<Movie,RecyclerView.ViewHolder>(MovieDiffUtil.DIFF_CALLBACK) {
 
 
 
@@ -49,8 +51,9 @@ class MovieAdapter(private val interaction: Interaction? = null) :
 
         fun bind(item: Movie) = with(itemView) {
             itemView.setOnClickListener {
-                interaction?.onItemSelected(adapterPosition, item)
+                interaction?.onItemSelected(layoutPosition, item)
             }
+            Log.e("main","url ${item.posterPath} ")
             val url=RestClient.ORIGINAL_IMG_BASE_URL+item.posterPath
             Glide.with(itemView.context)
                 .load(url)

@@ -1,8 +1,10 @@
 package com.quastio.nowplaying.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
+@Entity(tableName = "movies")
 data class Movie(
     @SerializedName("popularity")
     @Expose
@@ -16,6 +18,7 @@ data class Movie(
     @SerializedName("poster_path")
     @Expose
     var posterPath: String,
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     var id: Int,
@@ -31,9 +34,6 @@ data class Movie(
     @SerializedName("original_title")
     @Expose
     var originalTitle: String,
-    @SerializedName("genre_ids")
-    @Expose
-    var genreIds: List<Int>,
     @SerializedName("title")
     @Expose
     var title: String,
@@ -47,4 +47,5 @@ data class Movie(
     @Expose
     var releaseDate: String
 ) {
+
 }

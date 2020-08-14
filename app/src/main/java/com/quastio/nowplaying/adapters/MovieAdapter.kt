@@ -5,28 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
+import androidx.paging.PagedListAdapter
 import com.bumptech.glide.Glide
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.model.Movie
 import com.quastio.nowplaying.restclients.RestClient
+import com.quastio.nowplaying.utils.MovieDiffUtil
 
 class MovieAdapter(private val interaction: Interaction? = null) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    PagedListAdapter<Movie,RecyclerView.ViewHolder>(MovieDiffUtil.DIFF_CALLBACK) {
 
-    val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Movie>() {
 
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.id==newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem==newItem
-        }
-
-    }
-    private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -44,18 +33,12 @@ class MovieAdapter(private val interaction: Interaction? = null) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MovieViewHolder -> {
-                holder.bind(differ.currentList.get(position))
+                getItem(position)?.let { holder.bind(it) }
             }
         }
     }
 
-    override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
 
-    fun submitList(list: List<Movie>) {
-        differ.submitList(list)
-    }
 
     class MovieViewHolder
     constructor(

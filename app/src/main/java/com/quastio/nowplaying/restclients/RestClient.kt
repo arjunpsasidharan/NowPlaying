@@ -1,6 +1,7 @@
 package com.quastio.nowplaying.restclients
 
 import com.google.gson.GsonBuilder
+import com.quastio.nowplaying.model.Data
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -38,7 +39,7 @@ object RestClient {
 
     interface MovieApiService{
         @GET(NOW_PLAYING)
-       suspend fun getMovies(@Query("api_key") key:String="52a9e88fc9d879e48bce96bfd7633921",@Query("page")page:Int):Date
+       suspend fun getMovies(@Query("api_key") key:String="52a9e88fc9d879e48bce96bfd7633921",@Query("page")page:Int):Data
 
     }
 

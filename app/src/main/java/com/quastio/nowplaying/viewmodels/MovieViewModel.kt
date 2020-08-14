@@ -1,12 +1,15 @@
 package com.quastio.nowplaying.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingSource
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.quastio.nowplaying.model.MovieDataSource
+import com.quastio.nowplaying.model.MovieDb
+import com.quastio.nowplaying.model.MovieRemoteMediator
+import com.quastio.nowplaying.utils.MyApplication
 
 class MovieViewModel:ViewModel() {
-     val _movie_data=Pager(PagingConfig(20),pagingSourceFactory = {MovieDataSource()}).flow
+     @ExperimentalPagingApi
+     val movieData=Pager(PagingConfig(20),remoteMediator = MovieRemoteMediator()){
+          MovieDb.invoke(MyApplication.context).movieDao().getAllMoviesPaged()
+     }.flow
 }

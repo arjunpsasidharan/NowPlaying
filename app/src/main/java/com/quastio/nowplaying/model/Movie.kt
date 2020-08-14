@@ -17,7 +17,7 @@ data class Movie(
     var video: Boolean,
     @SerializedName("poster_path")
     @Expose
-    var posterPath: String,
+    var posterPath: String?="",
     @PrimaryKey
     @SerializedName("id")
     @Expose
@@ -27,7 +27,7 @@ data class Movie(
     var adult: Boolean,
     @SerializedName("backdrop_path")
     @Expose
-    var backdropPath: String,
+    var backdropPath: String?="",
     @SerializedName("original_language")
     @Expose
     var originalLanguage: String,

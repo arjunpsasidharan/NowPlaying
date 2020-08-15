@@ -3,6 +3,7 @@ package com.quastio.nowplaying.views
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.model.Movie
 import com.quastio.nowplaying.restclients.RestClient
@@ -22,6 +23,7 @@ class MovieDetailActivity : AppCompatActivity() {
           val stringUrl=RestClient.ORIGINAL_IMG_BASE_URL+movie.posterPath
           Glide.with(this)
               .load(stringUrl)
+              .apply(RequestOptions().placeholder(R.drawable.ic_baseline_image_24).error(R.drawable.ic_baseline_broken_image_24))
               .into(image_view)
           title_tv.text=movie.title
           description_tv.text=movie.overview

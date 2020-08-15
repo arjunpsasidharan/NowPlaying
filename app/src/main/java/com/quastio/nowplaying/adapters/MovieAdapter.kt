@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.model.Movie
 import com.quastio.nowplaying.restclients.RestClient
@@ -57,6 +58,8 @@ class MovieAdapter(private val interaction: Interaction? = null) :
             val url=RestClient.ORIGINAL_IMG_BASE_URL+item.posterPath
             Glide.with(itemView.context)
                 .load(url)
+                .apply(RequestOptions().placeholder(R.drawable.ic_baseline_image_24).error(R.drawable.ic_baseline_broken_image_24))
+
                 .into(imageView)
 
             titleTV.text=item.title

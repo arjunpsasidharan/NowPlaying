@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.ExperimentalPagingApi
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.quastio.nowplaying.R
 import com.quastio.nowplaying.adapters.MovieAdapter
@@ -18,13 +19,13 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity(), MovieAdapter.Interaction {
    private lateinit var movieViewModel: MovieViewModel
    private lateinit var movieAdapter: MovieAdapter
-   private lateinit var layoutManager: LinearLayoutManager
+   private lateinit var layoutManager: GridLayoutManager
     @ExperimentalPagingApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         movieAdapter= MovieAdapter(this)
-        layoutManager= LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        layoutManager= GridLayoutManager(this,2,LinearLayoutManager.VERTICAL,false)
         recycler_view.layoutManager=layoutManager
         recycler_view.adapter=movieAdapter
 

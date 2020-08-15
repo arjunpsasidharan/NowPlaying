@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import com.bumptech.glide.Glide
 import com.quastio.nowplaying.R
@@ -47,6 +48,7 @@ class MovieAdapter(private val interaction: Interaction? = null) :
         private val interaction: Interaction?
     ) : RecyclerView.ViewHolder(itemView) {
         private val imageView:ImageView=itemView.findViewById(R.id.image_view)
+        private val titleTV:TextView=itemView.findViewById(R.id.title_tv)
 
         fun bind(item: Movie) = with(itemView) {
             itemView.setOnClickListener {
@@ -57,6 +59,7 @@ class MovieAdapter(private val interaction: Interaction? = null) :
                 .load(url)
                 .into(imageView)
 
+            titleTV.text=item.title
         }
     }
 

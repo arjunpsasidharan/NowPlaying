@@ -18,7 +18,6 @@ data class Movie(
     @SerializedName("poster_path")
     @Expose
     var posterPath: String?="",
-    @PrimaryKey
     @SerializedName("id")
     @Expose
     var id: Int,
@@ -47,5 +46,7 @@ data class Movie(
     @Expose
     var releaseDate: String
 ) {
+    @PrimaryKey(autoGenerate = true)
+  var  movieId:Int=0
 
 }

@@ -1,5 +1,6 @@
 package com.quastio.nowplaying.views
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -42,6 +43,9 @@ class MainActivity : AppCompatActivity(), MovieAdapter.Interaction {
     }
 
     override fun onItemSelected(position: Int, item: Movie) {
-        Log.e("main",item.title)
+        val intent=Intent(this,MovieDetailActivity::class.java)
+        intent.putExtra("movie",item)
+        startActivity(intent)
+
     }
 }

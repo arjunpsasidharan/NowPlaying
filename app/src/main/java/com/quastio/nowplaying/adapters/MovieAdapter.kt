@@ -16,9 +16,7 @@ import com.quastio.nowplaying.restclients.RestClient
 import com.quastio.nowplaying.utils.MovieDiffUtil
 
 class MovieAdapter(private val interaction: Interaction? = null) :
-    PagingDataAdapter<Movie,RecyclerView.ViewHolder>(MovieDiffUtil.DIFF_CALLBACK) {
-
-
+    PagingDataAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffUtil.DIFF_CALLBACK) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -42,27 +40,27 @@ class MovieAdapter(private val interaction: Interaction? = null) :
     }
 
 
-
     class MovieViewHolder
     constructor(
         itemView: View,
         private val interaction: Interaction?
     ) : RecyclerView.ViewHolder(itemView) {
-        private val imageView:ImageView=itemView.findViewById(R.id.image_view)
-        private val titleTV:TextView=itemView.findViewById(R.id.title_tv)
+        private val imageView: ImageView = itemView.findViewById(R.id.image_view)
+        private val titleTV: TextView = itemView.findViewById(R.id.title_tv)
 
         fun bind(item: Movie) = with(itemView) {
             itemView.setOnClickListener {
                 interaction?.onItemSelected(layoutPosition, item)
             }
-            val url=RestClient.ORIGINAL_IMG_BASE_URL+item.posterPath
+            val url = RestClient.ORIGINAL_IMG_BASE_URL + item.posterPath
             Glide.with(itemView.context)
                 .load(url)
-                .apply(RequestOptions().placeholder(R.drawable.ic_baseline_image_24).error(R.drawable.ic_baseline_broken_image_24))
-
+                .apply(
+                    RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
+                        .error(R.drawable.ic_baseline_broken_image_24)
+                )
                 .into(imageView)
-
-            titleTV.text=item.title
+            titleTV.text = item.title
         }
     }
 

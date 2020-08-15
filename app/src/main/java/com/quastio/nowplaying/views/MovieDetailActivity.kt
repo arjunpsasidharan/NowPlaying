@@ -15,18 +15,21 @@ class MovieDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
 
-        if (intent!=null){
-            movie=intent.getSerializableExtra("movie") as Movie
+        if (intent != null) {
+            movie = intent.getSerializableExtra("movie") as Movie
         }
 
-      if (  this::movie.isInitialized){
-          val stringUrl=RestClient.ORIGINAL_IMG_BASE_URL+movie.posterPath
-          Glide.with(this)
-              .load(stringUrl)
-              .apply(RequestOptions().placeholder(R.drawable.ic_baseline_image_24).error(R.drawable.ic_baseline_broken_image_24))
-              .into(image_view)
-          title_tv.text=movie.title
-          description_tv.text=movie.overview
-      }
+        if (this::movie.isInitialized) {
+            val stringUrl = RestClient.ORIGINAL_IMG_BASE_URL + movie.posterPath
+            Glide.with(this)
+                .load(stringUrl)
+                .apply(
+                    RequestOptions().placeholder(R.drawable.ic_baseline_image_24)
+                        .error(R.drawable.ic_baseline_broken_image_24)
+                )
+                .into(image_view)
+            title_tv.text = movie.title
+            description_tv.text = movie.overview
+        }
     }
 }

@@ -9,12 +9,12 @@ import androidx.room.Query
 @Dao
 interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovies(movieList:List<Movie>):List<Long>
+    suspend fun insertMovies(movieList: List<Movie>): List<Long>
 
     @Query("SELECT * FROM movies")
-    fun getAllMoviesPaged(): PagingSource<Int,Movie>
+    fun getAllMoviesPaged(): PagingSource<Int, Movie>
 
 
     @Query("DELETE FROM movies")
-    suspend fun clearAll():Int
+    suspend fun clearAll(): Int
 }
